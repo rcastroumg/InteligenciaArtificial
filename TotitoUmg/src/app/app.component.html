@@ -1,0 +1,27 @@
+<div class="game-container">
+  <h1>Totito</h1>
+  <div class="status">
+    {{ EstadoJuego }}
+  </div>
+
+  <div class="game-board">
+    @for (cell of estadoJuego.tablero; track $index) {
+    <div class="cell" (click)="mueveUsuario($index)" [style.cursor]="obtenerCasilla($index)">
+      {{ cell }}
+    </div>
+    }
+    <!-- <div *ngFor="let cell of gameState.board; let i = index" class="cell" (click)="mueveUsuario(i)"
+      [style.cursor]="obtenerCasilla(i)">
+      {{ cell }}
+    </div> -->
+  </div>
+
+  <button class="new-game-btn" (click)="nuevoJuego()">Nuevo Juego</button>
+
+  <div class="stats">
+    <p>Partidas jugadas: {{ juegosJugados }}</p>
+    <p>Victorias jugador: {{ usuarioGanados }}</p>
+    <p>Victorias AI: {{ pcGanados }}</p>
+    <p>Empates: {{ empates }}</p>
+  </div>
+</div>
