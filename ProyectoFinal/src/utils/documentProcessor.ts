@@ -147,6 +147,7 @@ export const processDocument = async (
     }
 
     // Paso 3: Procesando respuesta
+    await simulateProcessingStep(2000);
     onStepChange(3);
 
     const data = await response.json();
