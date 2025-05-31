@@ -23,6 +23,7 @@ app.add_middleware(
 
 # Agrega los Routers
 app.include_router(routers.chatbot.router)
+app.include_router(routers.utilities.router)
 
 # Validaciones al inicial app
 @app.on_event("startup")
@@ -66,4 +67,4 @@ app.mount("/api",app)
 
 # Para debug
 if __name__ == "__main__":
-    uvicorn.run(app,host="0.0.0.0",port=8091)
+    uvicorn.run(app,host="0.0.0.0",port=8002)

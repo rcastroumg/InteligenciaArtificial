@@ -189,3 +189,8 @@ poetry.toml
 pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/linux,python
+
+# Ingore all files in the "config_aws" directory
+config_aws/*
+# Except for the "config_aws/config_aws.dev.ini" file
+!config_aws/config_aws.dev.ini

@@ -2,7 +2,7 @@ import json
 import uuid
 from fastapi import APIRouter, UploadFile, HTTPException, status
 from schemas.ChatbotSchema import NewConversationInput, QueryInput
-from utils.ChatbotUtil import RAGChatbotAPI
+from utils.RAGChatbotAPI import RAGChatbotAPI
 from typing import List
 from models.mysql_models.conversation import ConversationModel
 from models.mysql_models.conversation_history import ConversationHistoryModel
@@ -22,7 +22,7 @@ async def query(query: QueryInput):
 
 @router.get("/get_all_documents")
 def get_all_documents():
-    return rag_chatbot.get_all_documents()
+    return rag_chatbot.get_all_collections()
 
 @router.post("/delete_all_documents")
 async def delete_all_documents():
@@ -62,16 +62,6 @@ async def add_text_documents(documents: List[UploadFile]):
     
     return rag_chatbot.add_documents(general_documents)
 
-@router.post("/add_json_documents")
-async def add_json_documents(documents: List[UploadFile]):
-    general_documents = []
-    for document in documents:
-        json_data = json.loads(await document.read())
-
-        for json_doc in json_data:
-            general_documents.append(json_doc)
-    
-    return rag_chatbot.add_json_documents(general_documents)
 
 @router.post("/init_conversation")
 async def init_conversation(user: NewConversationInput):

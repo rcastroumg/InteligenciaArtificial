@@ -13,3 +13,9 @@ class QueryInput(BaseModel):
 
 class NewConversationInput(BaseModel):
     user: str
+
+
+class QueryOnlyInput(BaseModel):
+    query: str
+    prompt: str
+    top_k: int = 10
